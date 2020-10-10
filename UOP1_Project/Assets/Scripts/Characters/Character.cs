@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
 	[Tooltip("Each frame while jumping, gravity will be multiplied by this amount in an attempt to 'cancel it' (= jump higher)")] public float gravityDivider = .6f;
 	[Tooltip("Adjust the friction of the slope")] public float slideFriction = 0.3f;
 	[Tooltip("Starting vertical movement when falling from a platform")] public float fallingVerticalMovement = -5f;
+	[Tooltip("Particle effect for jumping/landing")] public GameObject jumpSmokePrefab;
 
 
 	private float gravityContributionMultiplier = 0f; //The factor which determines how much gravity is affecting verticalMovement
@@ -137,6 +138,7 @@ public class Character : MonoBehaviour
 			jumpBeginTime = Time.time;
 			verticalMovement = initialJumpForce; //This is the only place where verticalMovement is set to a positive value
 			gravityContributionMultiplier = 0f;
+			Instantiate(jumpSmokePrefab, transform.position, jumpSmokePrefab.transform.rotation);
 		}
 	}
 
